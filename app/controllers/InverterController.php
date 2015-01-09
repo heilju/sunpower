@@ -1,9 +1,12 @@
 <?php
 
 use Carbon\Carbon;
-
+use GuzzleHttp\Client as GuzzleClient;
+use Symfony\Component\DomCrawler\Crawler;
 
 class InverterController extends \BaseController {
+
+	protected $inverterValues = NULL;
 
 	/**
 	 * Display a listing of the resource.
@@ -12,16 +15,18 @@ class InverterController extends \BaseController {
 	 */
 	public function index()
 	{
+		// retrieve latest data record from database
+		$inverterLatestData = Inverter::orderBy('created_at', 'DESC')->first()->toArray();
+
+		// retrieve maximum values from database
 		$inverter = new Inverter();
-		$inverterLatestData = $inverter->getLatestData();
-		$inverterMaxData = $inverter->getMaxData();
+		$inverterMaxData = $inverter->getMaxData(Config::get('sunpower.maxValues'));
 
-		$data = array(
-			'inverterLatestData' => $inverterLatestData,
-			'inverterMaxData' => $inverterMaxData,
-		);
+		// merge latest data record and max values
+		$inverterValues = array_merge($inverterMaxData, $inverterLatestData);
 
-		return View::make('inverter.index', $data);
+
+		return View::make('inverter.index')->with('inverterValues',$inverterValues);
 	}
 
 
@@ -32,39 +37,50 @@ class InverterController extends \BaseController {
 	 */
 	public function create()
 	{
-		// Form to manually create data rows
+		// get user agent for decision making regarding data store function
+		$userAgent = Request::header('User-Agent');
+		Log::debug('Request containing User-Agent: ' . $userAgent);
 
-		 return View::make('inverter.create');
+		// create instance of Inverter
+		$inverter = new Inverter;
 
+		// get inverter operation state
+		$inverterState = $inverter->checkInverterState();
+
+		// If true inverter is on. Inverter can be queried for data
+		$inverterValues = $inverter->queryInverterUI($inverterState);
+
+		if ($userAgent == Config::get('sunpower.scriptingUserAgent'))
+		{
+			Log::debug('Request came from curl script. Directly storing inverter values without returning the user to the create view.');
+			$this->store($inverterValues);
+		}
+		else
+		{
+			Log::debug('Returning user to create view for submitting inverter values');
+			return View::make('inverter.create')->with('inverterValues', $inverterValues);
+		}
 	}
-
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store($inverterValues = array())
 	{
-		//
-		$inverter = new Inverter;
-		$inverter->acOutputCurrentL1 = Input::get('acOutputCurrentL1');
-		$inverter->acOutputCurrentL2 = Input::get('acOutputCurrentL2');
-		$inverter->acOutputCurrentL3 = Input::get('acOutputCurrentL3');
-		$inverter->acOutputPowerL1 = Input::get('acOutputPowerL1');
-		$inverter->acOutputPowerL2 = Input::get('acOutputPowerL2');
-		$inverter->acOutputPowerL3 = Input::get('acOutputPowerL3');
-		$inverter->acOutputPowerTotal = Input::get('acOutputPowerTotal');
-		$inverter->acOutputEnergyDaily = Input::get('acOutputEnergyDaily');
-		$inverter->acOutputEnergyTotal = Input::get('acOutputEnergyTotal');
-		$inverter->dcInputCurrentS1 = Input::get('dcInputCurrentS1');
-		$inverter->dcInputVoltageS1 = Input::get('dcInputVoltageS1');
-		$inverter->dcInputCurrentS2 = Input::get('dcInputCurrentS2');
-		$inverter->dcInputVoltageS2 = Input::get('dcInputVoltageS2');
-		$inverter->dcInputCurrentS3 = Input::get('dcInputCurrentS3');
-		$inverter->dcInputVoltageS3 = Input::get('dcInputVoltageS3');
-		$inverter->save();
+		if($inverterValues == NULL)
+		{
+			Log::debug('No array with inverter values provided. Reading from request input fields.');
+			$inverter = new Inverter(Input::all());
+		}
+		else
+		{
+			Log::debug('Got array with inverter Values.');
+			$inverter = new Inverter($inverterValues);
+		}
 
+		$inverter->save();
 
 		return Redirect::to('inverter');
 	}
