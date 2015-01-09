@@ -19,7 +19,7 @@
                 <div class="panel-heading"><strong>Leistung</strong></div>
 
                 <!-- Current output value -->
-                <p class="text-center mee-output-current">{{ $inverterLatestData->acOutputPowerTotal }} W</p>
+                <p class="text-center mee-output-current">{{ $inverterValues['acOutputPowerTotal'] }} W</p>
                 <!-- Table -->
                 <table class="table">
                     <tr>
@@ -30,11 +30,11 @@
                         <td>Jahr</td>
                     </tr>
                     <tr>
-                        <td>{{ $inverterMaxData['acOutputPowerTotalMax'] }} W</td>
-                        <td>{{ $inverterMaxData['acOutputPowerTotalMaxDay'] }}  W</td>
-                        <td>{{ $inverterMaxData['acOutputPowerTotalMaxWeek'] }} W</td>
-                        <td>{{ $inverterMaxData['acOutputPowerTotalMaxMonth'] }} W</td>
-                        <td>{{ $inverterMaxData['acOutputPowerTotalMaxYear'] }} W</td>
+                        <td>{{ $inverterValues['acOutputPowerTotalMax'] }} W</td>
+                        <td>{{ $inverterValues['acOutputPowerTotalMaxDay'] }}  W</td>
+                        <td>{{ $inverterValues['acOutputPowerTotalMaxWeek'] }} W</td>
+                        <td>{{ $inverterValues['acOutputPowerTotalMaxMonth'] }} W</td>
+                        <td>{{ $inverterValues['acOutputPowerTotalMaxYear'] }} W</td>
                     </tr>
                 </table>
             </div>
@@ -45,7 +45,7 @@
         <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading"><strong>Tagesenergie</strong></div>
-                <p class="text-center mee-output-daily">{{ $inverterLatestData->acOutputEnergyDaily }} kWh</p>
+                <p class="text-center mee-output-daily">{{ $inverterValues['acOutputEnergyDaily'] }} kWh</p>
                 <table class="table">
                     <tr>
                         <td>Gesamt</td>
@@ -54,10 +54,10 @@
                         <td>Jahr</td>
                     </tr>
                     <tr>
-                        <td>{{ $inverterMaxData['acOutputEnergyDailyMax'] }} kWh</td>
-                        <td>{{ $inverterMaxData['acOutputEnergyDailyMaxWeek'] }}  kWh</td>
-                        <td>{{ $inverterMaxData['acOutputEnergyDailyMaxMonth'] }}  kWh</td>
-                        <td>{{ $inverterMaxData['acOutputEnergyDailyMaxYear'] }}  kWh</td>
+                        <td>{{ $inverterValues['acOutputEnergyDailyMax'] }} kWh</td>
+                        <td>{{ $inverterValues['acOutputEnergyDailyMaxWeek'] }}  kWh</td>
+                        <td>{{ $inverterValues['acOutputEnergyDailyMaxMonth'] }}  kWh</td>
+                        <td>{{ $inverterValues['acOutputEnergyDailyMaxYear'] }}  kWh</td>
                     </tr>
                 </table>
             </div>
@@ -66,7 +66,7 @@
         <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading"><strong>Gesamtenergie</strong></div>
-                <p class="text-center mee-output-total">{{ $inverterLatestData->acOutputEnergyTotal }} kWh</p>
+                <p class="text-center mee-output-total">{{ $inverterValues['acOutputEnergyTotal'] }} kWh</p>
                 <table class="table">
                     <tr>
                         <td>Sekunden</td>
@@ -98,18 +98,18 @@
                     </tr>
                     <tr>
                         <td>1</td>
-                        <td>{{ $inverterLatestData->dcInputVoltageS1 }} V</td>
-                        <td>{{ $inverterLatestData->dcInputCurrentS1 }} A</td>
+                        <td>{{ $inverterValues['dcInputVoltageS1'] }} V</td>
+                        <td>{{ $inverterValues['dcInputCurrentS1'] }} A</td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>{{ $inverterLatestData->dcInputVoltageS2 }} V</td>
-                        <td>{{ $inverterLatestData->dcInputCurrentS2 }} W</td>
+                        <td>{{ $inverterValues['dcInputVoltageS2'] }} V</td>
+                        <td>{{ $inverterValues['dcInputCurrentS2'] }} W</td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td>{{ $inverterLatestData->dcInputVoltageS3 }} V</td>
-                        <td>{{ $inverterLatestData->dcInputCurrentS3 }} W</td>
+                        <td>{{ $inverterValues['dcInputVoltageS3'] }} V</td>
+                        <td>{{ $inverterValues['dcInputCurrentS3'] }} W</td>
                     </tr>
                 </table>
             </div>
@@ -126,18 +126,18 @@
                     </tr>
                     <tr>
                         <td>L1</td>
-                        <td>{{ $inverterLatestData->acOutputCurrentL1 }} V</td>
-                        <td>{{ $inverterLatestData->acOutputPowerL1 }} W</td>
+                        <td>{{ $inverterValues['acOutputVoltageL1'] }} V</td>
+                        <td>{{ $inverterValues['acOutputPowerL1'] }} W</td>
                     </tr>
                     <tr>
                         <td>L2</td>
-                        <td>{{ $inverterLatestData->acOutputCurrentL2 }} V</td>
-                        <td>{{ $inverterLatestData->acOutputPowerL2 }} W</td>
+                        <td>{{ $inverterValues['acOutputVoltageL2'] }} V</td>
+                        <td>{{ $inverterValues['acOutputPowerL2'] }} W</td>
                     </tr>
                     <tr>
                         <td>L3</td>
-                        <td>{{ $inverterLatestData->acOutputCurrentL3 }} V</td>
-                        <td>{{ $inverterLatestData->acOutputPowerL3 }} W</td>
+                        <td>{{ $inverterValues['acOutputVoltageL3'] }} V</td>
+                        <td>{{ $inverterValues['acOutputPowerL3'] }} W</td>
                     </tr>
                 </table>
             </div>
