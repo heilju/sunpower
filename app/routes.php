@@ -13,17 +13,9 @@
 
 use Carbon\Carbon;
 
-Route::resource('inverter', 'InverterController');
-
-Route::get('httpclient', function()
+Route::get('/', function()
 {
-    $client = new GuzzleHttp\Client();
-    $response = $client->get('http://www.google.at');
-
-    echo "HTTP Response Code: " . $response->getStatusCode() . "<br>";
-    echo "HTTP Body: " . $response->getBody() . "<br>";
-
-    echo '<pre>';
-    echo dd($response);
-    echo '</pre>';
+    return Redirect::route('inverter.index');
 });
+
+Route::resource('inverter', 'InverterController');
