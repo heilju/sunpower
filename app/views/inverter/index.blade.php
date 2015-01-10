@@ -4,9 +4,9 @@
     <div class="header">
         <nav>
             <ul class="nav nav-pills pull-right">
-                <li role="presentation">{{ HTML::link('http://sunpower.meema.lan/inverter', 'Overview')}}</li>
+                <li role="presentation">{{ HTML::link('./inverter', 'Overview')}}</li>
                 <li role="presentation">{{ HTML::link('#', 'Graphs')}}</li>
-                <li role="presentation">{{ HTML::link('http://sunpower.meema.lan/inverter/create', 'Create')}}</li>
+                <li role="presentation">{{ HTML::link('./inverter/create', 'Create')}}</li>
             </ul>
         </nav>
         <h3 class="text-muted">Sonnenkraftwerk Weindlweg 16</h3>
