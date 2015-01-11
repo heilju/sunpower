@@ -19,3 +19,5 @@ Route::get('/', function()
 });
 
 Route::resource('inverter', 'InverterController');
+
+Route::resource('graph', 'GraphController');

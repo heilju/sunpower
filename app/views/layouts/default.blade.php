@@ -17,7 +17,7 @@
             <ul class="nav nav-pills pull-right">
                 <li role="presentation" class="active"><a href="http://d-sunpower.meema.lan/inverter">Overview</a></li>
                 <li role="presentation"><a href="http://d-sunpower.meema.lan/inverter/create">Create</a></li>
-                <li role="presentation"><a href="http://d-sunpower.meema.lan/inverter/graph">Graphs</a></li>
+                <li role="presentation"><a href="http://d-sunpower.meema.lan/graph">Graphs</a></li>
             </ul>
         </nav>
         <h3 class="text-muted">Sunpower - Weindlweg 16</h3>
