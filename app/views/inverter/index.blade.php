@@ -1,17 +1,5 @@
 @extends('layouts.default')
 @section('content')
-<div class="container">
-    <div class="header">
-        <nav>
-            <ul class="nav nav-pills pull-right">
-                <li role="presentation">{{ HTML::link('./inverter', 'Overview')}}</li>
-                <li role="presentation">{{ HTML::link('#', 'Graphs')}}</li>
-                <li role="presentation">{{ HTML::link('./inverter/create', 'Create')}}</li>
-            </ul>
-        </nav>
-        <h3 class="text-muted">Sonnenkraftwerk Weindlweg 16</h3>
-    </div>
-
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
@@ -143,9 +131,4 @@
             </div>
         </div>
     </div>
-    <footer class="footer">
-        <p>&copy; meema.org 2014</p>
-    </footer>
-
-</div>
 @stop

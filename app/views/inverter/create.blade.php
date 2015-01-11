@@ -1,9 +1,5 @@
 @extends('layouts.default')
 @section('content')
-<div class="container">
-    <div class="header">
-        <h1>Create new data row</h1>
-    </div>
     <div class="row">
         {{ Form::open(array('url' => 'inverter')) }}
         <div class="col-lg-6">
@@ -104,8 +100,4 @@
         </div>
         {{ Form::close() }}
     </div>
-    <footer class="footer">
-        <p>&copy; meema.org 2014</p>
-    </footer>
-</div>
 @stop
