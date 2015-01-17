@@ -5,23 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title></title>
+    <title>Sunpower</title>
+    <script src="../js/Chart.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dygraph/1.1.0/dygraph-combined.js"></script>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/jumbotron-narrow.css" rel="stylesheet">
 
 </head>
 <body>
 <div class="container">
-    <div class="header">
-        <nav>
-            <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active"><a href="http://d-sunpower.meema.lan/inverter">Overview</a></li>
-                <li role="presentation"><a href="http://d-sunpower.meema.lan/inverter/create">Create</a></li>
-                <li role="presentation"><a href="http://d-sunpower.meema.lan/graph">Graphs</a></li>
-            </ul>
+        <h3>Sunpower - Weindlweg 16</h3>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Brand</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="http://d-sunpower.meema.lan/inverter">Überblick</a></li>
+                        <li><a href="http://d-sunpower.meema.lan/inverter/create">Werte abfragen</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Graphen <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="http://d-sunpower.meema.lan/graph/power">Leistung</a></li>
+                                <li><a href="http://d-sunpower.meema.lan/graph/energy">Energie</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
         </nav>
-        <h3 class="text-muted">Sunpower - Weindlweg 16</h3>
-    </div>
 
 @yield('content')
 
@@ -30,8 +53,6 @@
     </footer>
 
 </div>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="../js/bootstrap.min.js"></script>
