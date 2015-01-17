@@ -7,6 +7,9 @@
  */
 return array(
 
+    // application base url
+    'baseUrl' => 'http://d-sunpower.meema.lan',
+
     // PV Inverter URL
     'pvInverterUrl' => 'http://pv.meema.lan',
 
