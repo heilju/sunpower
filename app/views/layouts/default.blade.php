@@ -7,11 +7,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Sunpower</title>
-    <script src="../js/Chart.min.js"></script>
+    <script src="{{ Config::get('sunpower.baseUrl') }}/js/Chart.min.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dygraph/1.1.0/dygraph-combined.js"></script>
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/jumbotron-narrow.css" rel="stylesheet">
+    <link href="{{ Config::get('sunpower.baseUrl') }}/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ Config::get('sunpower.baseUrl') }}/css/jumbotron-narrow.css" rel="stylesheet">
 @show
 </head>
 <body>
@@ -37,13 +37,13 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li><a href="http://d-sunpower.meema.lan/inverter">Überblick</a></li>
-                        <li><a href="http://d-sunpower.meema.lan/inverter/create">Werte abfragen</a></li>
+                        <li><a href="{{ Config::get('sunpower.baseUrl') }}/inverter">Überblick</a></li>
+                        <li><a href="{{ Config::get('sunpower.baseUrl') }}/inverter/create">Werte abfragen</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Graphen <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="http://d-sunpower.meema.lan/graph/power">Leistung</a></li>
-                                <li><a href="http://d-sunpower.meema.lan/graph/energy">Energie</a></li>
+                                <li><a href="{{ Config::get('sunpower.baseUrl') }}/graph/power">Leistung</a></li>
+                                <li><a href="{{ Config::get('sunpower.baseUrl') }}/graph/energy">Energie</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -64,7 +64,7 @@
 @section('content_scripts')
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="../js/bootstrap.min.js"></script>
+        <script src="{{ Config::get('sunpower.baseUrl') }}/js/bootstrap.min.js"></script>
 @show
     </body>
 </html>
