@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('content')
+@section('content_body')
     <div class="row">
         {{ Form::open(array('url' => 'inverter')) }}
         <div class="col-lg-6">

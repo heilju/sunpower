@@ -1,5 +1,6 @@
 @extends('layouts.default')
-@section('content')
+
+@section('content_body')
 <div class="row">
     <div class="col-lg-12">
         <ul class="nav nav-pills">
@@ -35,98 +36,102 @@
         </div>
     </div>
 </div>
-<!-- dygraph -->
-<script type="text/javascript">
-    var chartDataDayJson = <?php echo $graphJson['day']; ?>;
-    var chartDataWeekJson = <?php echo $graphJson['week']; ?>;
-    var chartDataMonthJson = <?php echo $graphJson['month']; ?>;
-    var data = [];
+@stop
 
-    function toDygraphData(json)
-    {
-        data.length = 0;
+@section('content_scripts')
+    @parent
+    <!-- dygraph -->
+    <script type="text/javascript">
+        var chartDataDayJson = <?php echo $graphJson['day']; ?>;
+        var chartDataWeekJson = <?php echo $graphJson['week']; ?>;
+        var chartDataMonthJson = <?php echo $graphJson['month']; ?>;
+        var data = [];
 
-        for(var item in json)
+        function toDygraphData(json)
         {
-            //console.log("timestamp: " + timestamp + ", " + "Value: " + value);
-            var timestamp = new Date(json[item][0] * 1000);
-            var value = json[item][1];
+            data.length = 0;
 
-            if (value > 0)
+            for(var item in json)
             {
-                //console.log("Adding data point to array: X:" + timestamp + ", " + "Y:" + value);
-                data[data.length] = [timestamp, value];
+                //console.log("timestamp: " + timestamp + ", " + "Value: " + value);
+                var timestamp = new Date(json[item][0] * 1000);
+                var value = json[item][1];
+
+                if (value > 0)
+                {
+                    //console.log("Adding data point to array: X:" + timestamp + ", " + "Y:" + value);
+                    data[data.length] = [timestamp, value];
+                }
             }
+
+            console.log('Returning ' + data.length + ' data points.');
+
+            return data;
         }
 
-        console.log('Returning ' + data.length + ' data points.');
+        console.log('Got ' + chartDataDayJson.length + ' data points for day graph.');
 
-        return data;
-    }
-
-    console.log('Got ' + chartDataDayJson.length + ' data points for day graph.');
-
-    dayG = new Dygraph(
-            // containing div
-            document.getElementById("dayGraph"),
-            toDygraphData(chartDataDayJson),
-            {
-                labels: ['Date', 'Value'],
-                fillGraph: true,
-                axes: {
-                    x: {
-                        valueFormatter: Dygraph.dateString_,
-                        axisLabelFormatter: Dygraph.dateAxisFormatter,
-                        ticker: Dygraph.dateTicker,
+        dayG = new Dygraph(
+                // containing div
+                document.getElementById("dayGraph"),
+                toDygraphData(chartDataDayJson),
+                {
+                    labels: ['Date', 'Value'],
+                    fillGraph: true,
+                    axes: {
+                        x: {
+                            valueFormatter: Dygraph.dateString_,
+                            axisLabelFormatter: Dygraph.dateAxisFormatter,
+                            ticker: Dygraph.dateTicker,
+                        }
                     }
                 }
-            }
-    );
+        );
 
-    console.log('Day graph plotted using ' + data.length + ' data points');
+        console.log('Day graph plotted using ' + data.length + ' data points');
 
-    console.log('Got ' + chartDataWeekJson.length + ' data points for week graph.');
+        console.log('Got ' + chartDataWeekJson.length + ' data points for week graph.');
 
-    weekG = new Dygraph(
-            // containing div
-            document.getElementById("weekGraph"),
+        weekG = new Dygraph(
+                // containing div
+                document.getElementById("weekGraph"),
 
-            toDygraphData(chartDataWeekJson),
-            {
-                labels: ['Date', 'Value'],
-                fillGraph: true,
-                axes: {
-                    x: {
-                        valueFormatter: Dygraph.dateString_,
-                        axisLabelFormatter: Dygraph.dateAxisFormatter,
-                        ticker: Dygraph.dateTicker,
+                toDygraphData(chartDataWeekJson),
+                {
+                    labels: ['Date', 'Value'],
+                    fillGraph: true,
+                    axes: {
+                        x: {
+                            valueFormatter: Dygraph.dateString_,
+                            axisLabelFormatter: Dygraph.dateAxisFormatter,
+                            ticker: Dygraph.dateTicker,
+                        }
                     }
                 }
-            }
-    );
+        );
 
-    console.log('Week graph plotted using ' + data.length + ' data points');
+        console.log('Week graph plotted using ' + data.length + ' data points');
 
-    console.log('Got ' + chartDataMonthJson.length + ' data points for month graph.');
+        console.log('Got ' + chartDataMonthJson.length + ' data points for month graph.');
 
-    monthG = new Dygraph(
-            // containing div
-            document.getElementById("monthGraph"),
+        monthG = new Dygraph(
+                // containing div
+                document.getElementById("monthGraph"),
 
-            toDygraphData(chartDataMonthJson),
-            {
-                labels: ['Date', 'Value'],
-                fillGraph: true,
-                axes: {
-                    x: {
-                        valueFormatter: Dygraph.dateString_,
-                        axisLabelFormatter: Dygraph.dateAxisFormatter,
-                        ticker: Dygraph.dateTicker,
+                toDygraphData(chartDataMonthJson),
+                {
+                    labels: ['Date', 'Value'],
+                    fillGraph: true,
+                    axes: {
+                        x: {
+                            valueFormatter: Dygraph.dateString_,
+                            axisLabelFormatter: Dygraph.dateAxisFormatter,
+                            ticker: Dygraph.dateTicker,
+                        }
                     }
                 }
-            }
-    );
+        );
 
-    console.log('Month graph plotted using ' + data.length + ' data points');
-</script>
+        console.log('Month graph plotted using ' + data.length + ' data points');
+    </script>
 @stop

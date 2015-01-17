@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('content')
+@section('content_body')
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">

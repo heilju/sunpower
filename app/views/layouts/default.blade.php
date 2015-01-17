@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 <head>
+@section('html_head')
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -11,11 +12,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dygraph/1.1.0/dygraph-combined.js"></script>
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/jumbotron-narrow.css" rel="stylesheet">
-
+@show
 </head>
 <body>
-<div class="container">
+    <div class="container">
+
+@section('content_page_title')
         <h3>Sunpower - Weindlweg 16</h3>
+@show
+
+@section('content_nav')
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -45,16 +51,21 @@
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
+@show
 
-@yield('content')
+@yield('content_body')
 
-    <footer class="footer">
-        <p>&copy; meema.org 2014</p>
-    </footer>
+@section('content_footer')
+        <footer class="footer">
+            <p>&copy; meema.org 2014</p>
+        </footer>
+        </div>
+@show
 
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="../js/bootstrap.min.js"></script>
-</body>
+@section('content_scripts')
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="../js/bootstrap.min.js"></script>
+@show
+    </body>
 </html>
