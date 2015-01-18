@@ -16,11 +16,6 @@
 </head>
 <body>
     <div class="container">
-
-@section('content_page_title')
-        <h3>Sunpower - Weindlweg 16</h3>
-@show
-
 @section('content_nav')
         <nav class="navbar navbar-default">
             <div class="container-fluid">
@@ -32,11 +27,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
+                    <a class="navbar-brand" href="{{ Config::get('sunpower.baseUrl') }}">{{ HTML::image('pics/sunpower_logo.png', 'alt', array('height' => 25)) }}</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav navbar-right">
                         <li><a href="{{ Config::get('sunpower.baseUrl') }}/inverter">Überblick</a></li>
                         <li><a href="{{ Config::get('sunpower.baseUrl') }}/inverter/create">Werte abfragen</a></li>
                         <li class="dropdown">
