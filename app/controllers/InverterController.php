@@ -15,16 +15,14 @@ class InverterController extends \BaseController {
 	 */
 	public function index()
 	{
-		// retrieve latest data record from database
-		$inverterLatestData = Inverter::orderBy('created_at', 'DESC')->first()->toArray();
+		$inverterLatestData = DB::table('values')->orderBy('created_at', 'DESC')->first();
 
 		// retrieve maximum values from database
 		$inverter = new Inverter();
 		$inverterMaxData = $inverter->getMaxData(Config::get('sunpower.maxValues'));
 
 		// merge latest data record and max values
-		$inverterValues = array_merge($inverterMaxData, $inverterLatestData);
-
+		$inverterValues = array_merge($inverterMaxData, get_object_vars($inverterLatestData));
 
 		return View::make('inverter.index')->with('inverterValues',$inverterValues);
 	}
