@@ -11,11 +11,11 @@ use Carbon\Carbon;
 
 class Graph {
 
-    // set return array to 0
-    public $aGraphData = array();
-
     public function getGraphData($xAxis, $yAxis, Carbon $fromDate, Carbon $toDate, $skip = 1)
     {
+        // set return array to 0
+        $aGraphData = array();
+
         // set time for exection time calculation
         $queryStart = microtime(true);
 
@@ -53,6 +53,5 @@ class Graph {
         Log::debug('Query took '. $queryDuration . ', Loop took ' . $loopDuration . '. Total execution: ' . $totalDuration);
 
         return $aGraphData;
-
     }
 }
