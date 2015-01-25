@@ -179,32 +179,37 @@ class Inverter extends Eloquent {
                 {
                     case 'alltime':
                         $keyMaxAlltime = $property . "Max";
-                        Log::debug('Key: ' . $keyMaxAlltime . ', Value: ' . $this::max($property));
-                        $maxData = array_add($maxData, $keyMaxAlltime, $this::max($property));
+                        $valueMaxAlltime = $this::max($property);
+                        Log::debug('Key: ' . $keyMaxAlltime . ', Value: ' . $valueMaxAlltime);
+                        $maxData = array_add($maxData, $keyMaxAlltime, $valueMaxAlltime);
                         break;
 
                     case 'day':
                         $keyMaxDay = $property . "MaxDay";
-                        Log::debug('Key: ' . $keyMaxDay . ', Value: ' . $this::max($property));
-                        $maxData = array_add($maxData, $keyMaxDay, $this::whereBetween('created_at', array($yesterday,$now))->max($property));
+                        $valueMaxDay = $this::whereBetween('created_at', array($yesterday,$now))->max($property);
+                        Log::debug('Key: ' . $keyMaxDay . ', Value: ' . $valueMaxDay);
+                        $maxData = array_add($maxData, $keyMaxDay, $valueMaxDay);
                         break;
 
                     case 'week':
                         $keyMaxWeek = $property . "MaxWeek";
-                        Log::debug('Key: ' . $keyMaxWeek . ', Value: ' . $this::max($property));
-                        $maxData = array_add($maxData, $keyMaxWeek, $this::whereBetween('created_at', array($oneWeekAgo,$now))->max($property));
+                        $valueMaxWeek = $this::whereBetween('created_at', array($oneWeekAgo,$now))->max($property);
+                        Log::debug('Key: ' . $keyMaxWeek . ', Value: ' . $valueMaxWeek);
+                        $maxData = array_add($maxData, $keyMaxWeek, $valueMaxWeek);
                         break;
 
                     case 'month':
                         $keyMaxMonth = $property . "MaxMonth";
-                        Log::debug('Key: ' . $keyMaxMonth . ', Value: ' . $this::max($property));
-                        $maxData = array_add($maxData, $keyMaxMonth, $this::whereBetween('created_at', array($oneMonthAgo,$now))->max($property));
+                        $valueMaxMonth = $this::whereBetween('created_at', array($oneMonthAgo,$now))->max($property);
+                        Log::debug('Key: ' . $keyMaxMonth . ', Value: ' . $valueMaxMonth);
+                        $maxData = array_add($maxData, $keyMaxMonth, $valueMaxMonth);
                         break;
 
                     case 'year':
                         $keyMaxYear = $property . "MaxYear";
-                        Log::debug('Key: ' . $keyMaxYear . ', Value: ' . $this::max($property));
-                        $maxData = array_add($maxData, $keyMaxYear, $this::whereBetween('created_at', array($oneYearAgo,$now))->max($property));
+                        $valueMaxYear = $this::whereBetween('created_at', array($oneYearAgo,$now))->max($property);
+                        Log::debug('Key: ' . $keyMaxYear . ', Value: ' . $valueMaxYear);
+                        $maxData = array_add($maxData, $keyMaxYear, $valueMaxYear);
                         break;
                 }
             }
