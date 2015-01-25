@@ -9,15 +9,23 @@
         </ul>
     </div>
 </div>
-<div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-default">
-            <!-- Default panel contents -->
-            <div class="panel-heading"><strong>Tag</strong></div>
-            <div id="dayGraph" style="width:100%;"></div>
+@if (count($graphJson['day']) > 1)
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading"><strong>Tag</strong></div>
+                <div id="dayGraph" style="width:100%;"></div>
+            </div>
         </div>
     </div>
-</div>
+@else
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>Warnung!</strong> Es sind keine Daten für den letzten Tag verfügbar.
+    </div>
+@endif
+
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
