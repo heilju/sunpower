@@ -9,7 +9,7 @@
         </ul>
     </div>
 </div>
-@if (count($graphJson['day']) > 1)
+@if (count(json_decode($graphJson['day'])) > 0)
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
