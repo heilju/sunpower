@@ -9,9 +9,9 @@ class InverterController extends \BaseController {
 	protected $inverterValues = NULL;
 
 	/**
-	 * Display a listing of the resource.
+	 * Display the overview page including last values and max values.
 	 *
-	 * @return Response
+	 * @return Illuminate\View\View
 	 */
 	public function index()
 	{
@@ -29,9 +29,10 @@ class InverterController extends \BaseController {
 
 
 	/**
-	 * Show the form for creating a new resource.
+	 * Action responsible for creating the user form for submitting values.
 	 *
-	 * @return Response
+	 *
+	 * @return \Illuminate\View\View
 	 */
 	public function create()
 	{
@@ -63,7 +64,9 @@ class InverterController extends \BaseController {
 	/**
 	 * Store a newly created resource in storage.
 	 *
-	 * @return Response
+	 * @param	array	$inverterValues 	Array containing the inverter values to store.
+	 *
+	 * @return \Illuminate\Http\RedirectResponse
 	 */
 	public function store($inverterValues = array())
 	{
@@ -82,54 +85,4 @@ class InverterController extends \BaseController {
 
 		return Redirect::to('inverter');
 	}
-
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
-
 }

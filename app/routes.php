@@ -17,6 +17,6 @@ Route::get('/', function()
     return Redirect::route('inverter.index');
 });
 
-Route::resource('inverter', 'InverterController');
+Route::resource('inverter', 'InverterController', array('only' => array('index', 'create', 'store')));
 
-Route::resource('graph', 'GraphController',array('only' => array('show')));
+Route::resource('graph', 'GraphController', array('only' => array('show')));
