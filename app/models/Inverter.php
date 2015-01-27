@@ -50,7 +50,11 @@ class Inverter extends Eloquent {
     protected $acOutputEnergyDaily;
     protected $acOutputEnergyTotal;
 
-
+    /**
+     * Connects and authenticates to the inverter UI.
+     *
+     * @return GuzzleHttp\Message\Response GuzzleHttp reponse object.
+     */
     public function connectInverter()
     {
         // create instance of Guzzle HTTP client and send request. URL and HTTP basic auth details are read from config file
@@ -61,7 +65,11 @@ class Inverter extends Eloquent {
         return $res;
     }
 
-
+    /**
+     * Checks operation state of inverter.
+     *
+     * @return boolean Returns true when inverter is on, false when inverter is off.
+     */
     public function checkInverterState()
     {
         // set xpath config value for property pvState
@@ -86,7 +94,13 @@ class Inverter extends Eloquent {
         }
     }
 
-
+    /**
+     * Checks operation state of inverter.
+     *
+     * @param   boolean $inverterState Contains the operation state of the inverter.
+     *
+     * @return  array Contains the values provided by the inverter.
+     */
     public function queryInverterUI($inverterState)
     {
         // initialize array for current values which will be scraped from inverter UI
@@ -146,11 +160,25 @@ class Inverter extends Eloquent {
         return $inverterValues;
     }
 
-    public function queryInverterHistoryFile()
+    /**
+     * Checks operation state of inverter.
+     *
+     * @param   boolean $inverterState Contains the operation state of the inverter.
+     *
+     * @return  array Contains the values provided by the inverter.
+     */
+    public function getLatestData()
     {
-        // get last records from inverter history file and return them to the controller
+
     }
 
+    /**
+     * Retrieves max data from database according to configuration.
+     *
+     * @param   array $maxValuesConfig Contains value categories from configration file for which max data should be retrieved.
+     *
+     * @return  array Contains max data key value pairs.
+     */
     public function getMaxData($maxValuesConfig = NULL)
     {
         $now = Carbon::now()->toDateTimeString();
@@ -179,35 +207,35 @@ class Inverter extends Eloquent {
                 {
                     case 'alltime':
                         $keyMaxAlltime = $property . "Max";
-                        $valueMaxAlltime = $this::max($property);
+                        $valueMaxAlltime = DB::table('values')->max($property);
                         Log::debug('Key: ' . $keyMaxAlltime . ', Value: ' . $valueMaxAlltime);
                         $maxData = array_add($maxData, $keyMaxAlltime, $valueMaxAlltime);
                         break;
 
                     case 'day':
                         $keyMaxDay = $property . "MaxDay";
-                        $valueMaxDay = $this::whereBetween('created_at', array($yesterday,$now))->max($property);
+                        $valueMaxDay = DB::table('values')->whereBetween('created_at', array($yesterday,$now))->max($property);
                         Log::debug('Key: ' . $keyMaxDay . ', Value: ' . $valueMaxDay);
                         $maxData = array_add($maxData, $keyMaxDay, $valueMaxDay);
                         break;
 
                     case 'week':
                         $keyMaxWeek = $property . "MaxWeek";
-                        $valueMaxWeek = $this::whereBetween('created_at', array($oneWeekAgo,$now))->max($property);
+                        $valueMaxWeek = DB::table('values')->whereBetween('created_at', array($oneWeekAgo,$now))->max($property);
                         Log::debug('Key: ' . $keyMaxWeek . ', Value: ' . $valueMaxWeek);
                         $maxData = array_add($maxData, $keyMaxWeek, $valueMaxWeek);
                         break;
 
                     case 'month':
                         $keyMaxMonth = $property . "MaxMonth";
-                        $valueMaxMonth = $this::whereBetween('created_at', array($oneMonthAgo,$now))->max($property);
+                        $valueMaxMonth = DB::table('values')->whereBetween('created_at', array($oneMonthAgo,$now))->max($property);
                         Log::debug('Key: ' . $keyMaxMonth . ', Value: ' . $valueMaxMonth);
                         $maxData = array_add($maxData, $keyMaxMonth, $valueMaxMonth);
                         break;
 
                     case 'year':
                         $keyMaxYear = $property . "MaxYear";
-                        $valueMaxYear = $this::whereBetween('created_at', array($oneYearAgo,$now))->max($property);
+                        $valueMaxYear = DB::table('values')->whereBetween('created_at', array($oneYearAgo,$now))->max($property);
                         Log::debug('Key: ' . $keyMaxYear . ', Value: ' . $valueMaxYear);
                         $maxData = array_add($maxData, $keyMaxYear, $valueMaxYear);
                         break;
