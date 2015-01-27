@@ -32,7 +32,8 @@ class Graph {
 
         // query database for specified date/time range
         Log::debug('Querying database for values between ' . $fromDate . ' and ' . $toDate);
-        $aDataPoints = DB::table('values')->whereBetween('created_at', array($fromDate,$toDate))->orderBy('created_at','asc')->get(array($xAxis, $yAxis));
+        $aDataPoints = DB::table('values')->whereBetween('created_at', array($fromDate,$toDate))
+                       ->orderBy('created_at','asc')->get(array($xAxis, $yAxis));
 
         // set time for exection time calculation
         $queryEnd = microtime(true);
@@ -61,7 +62,8 @@ class Graph {
         $totalDuration = $loopDuration + $queryDuration;
 
         // logging execution times
-        Log::debug('Query took '. $queryDuration . ', Loop took ' . $loopDuration . '. Total execution: ' . $totalDuration);
+        Log::debug('Query took '. $queryDuration . ', Loop took ' . $loopDuration . '. Total execution: ' .
+                   $totalDuration);
 
         return $aGraphData;
     }
