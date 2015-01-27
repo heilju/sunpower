@@ -11,6 +11,17 @@ use Carbon\Carbon;
 
 class Graph {
 
+    /**
+     * Retrieves graph data from database.
+     *
+     * @param   string  $xAxis      Value category to use for graph X axis.
+     * @param   string  $yAxis      Value category to use for graph Y axis.
+     * @param   Carbon  $fromDate   Starting point for time range.
+     * @param   Carbon  $toDate     End point for time range.
+     * @param   int     $skip       Skip n values when adding to return array.
+     *
+     * @return  array Contains graph data for the specified value category and time range.
+     */
     public function getGraphData($xAxis, $yAxis, Carbon $fromDate, Carbon $toDate, $skip = 1)
     {
         // set return array to 0
