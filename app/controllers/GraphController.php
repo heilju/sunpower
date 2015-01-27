@@ -5,49 +5,17 @@ use Carbon\Carbon;
 class GraphController extends \BaseController {
 
 	/**
-	 * Display a listing of the resource.
+	 * Display the graphs for the specified value type.
 	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-
-	}
-
-
-	/**
-	 * Show the form for creating a new resource.
+	 * @param  string	$yAxis		The value type for which graphs should be displayed
 	 *
-	 * @return Response
+	 * @return Illuminate\View\View
 	 */
-	public function create()
-	{
-		//
-	}
-
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
+	public function show($yAxis)
 	{
 		$xAxis = 'created_at';
 
-		switch($id)
+		switch($yAxis)
 		{
 			case 'power':
 
@@ -91,42 +59,4 @@ class GraphController extends \BaseController {
 
 		return View::make('graph.index')->with('graphJson',$graphJson);
 	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
-
 }
