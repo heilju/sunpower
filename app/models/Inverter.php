@@ -173,6 +173,30 @@ class Inverter extends Eloquent {
     }
 
     /**
+     * Returns produced energy for the specified time range.
+     *
+     * @param   \Carbon\Carbon $startDate Start date of time range.
+     * @param   \Carbon\Carbon $endDate End date of time range.
+     *
+     * @return  int Contains the values provided by the inverter.
+     */
+    public function getEnergyProduced(Carbon $startDate, Carbon $endDate)
+    {
+        // query db and calculate difference between max and min value of acOutputEnergyTotal
+        $energyProduced = DB::table('values')
+                    ->select(DB::raw('max(acOutputEnergyTotal) - min(acOutputEnergyTotal) as diff'))
+                    ->whereBetween('created_at', array($startDate, $endDate))
+                    ->get();
+
+        // Todo: save amount of energy produced last month on the first day of each month to a dedicated table
+        // Todo: table - energyProducedMonth, columns: id, year, month, amount
+        // Todo: table - energyProducedWeek, columns: id, year, week, amount
+
+        // get_object_vars from objStd and return diff casted to int
+        return (int) get_object_vars($energyProduced[0])['diff'];
+    }
+
+    /**
      * Retrieves max data from database according to configuration.
      *
      * @param   array $maxValuesConfig Contains value categories from configration file for which max data should be retrieved.
