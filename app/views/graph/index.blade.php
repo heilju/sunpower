@@ -4,8 +4,8 @@
 <div class="row">
     <div class="col-lg-12">
         <ul class="nav nav-pills">
-            <li role="presentation"><a href="{{ Config::get('sunpower.baseUrl') }}/graph/power">Leistung</a></li>
-            <li role="presentation"><a href="{{ Config::get('sunpower.baseUrl') }}/graph/energy">Energie</a></li>
+            <li role="presentation"><a href="{{ Request::root() }}/graph/power">Leistung</a></li>
+            <li role="presentation"><a href="{{ Request::root() }}/graph/energy">Energie</a></li>
         </ul>
     </div>
 </div>
