@@ -7,11 +7,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Sunpower</title>
-    <script src="http://{{ Request::servername('SERVER NAME') }}/js/Chart.min.js"></script>
+    <script src="{{ Request::root() }}/js/Chart.min.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart']}]}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dygraph/1.1.0/dygraph-combined.js"></script>
-    <link href="http://{{ Request::servername('SERVER NAME') }}/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://{{ Request::servername('SERVER NAME') }}/css/jumbotron-narrow.css" rel="stylesheet">
+    <link href="{{ Request::root() }}/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ Request::root() }}/css/jumbotron-narrow.css" rel="stylesheet">
 @show
 </head>
 <body>
@@ -27,19 +27,19 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="http://{{ Request::servername('SERVER NAME') }}">{{ HTML::image('pics/sunpower_logo.png', 'alt', array('height' => 25)) }}</a>
+                    <a class="navbar-brand" href="{{ Request::root() }}">{{ HTML::image('pics/sunpower_logo.png', 'alt', array('height' => 25)) }}</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="http://{{ Request::servername('SERVER NAME') }}/inverter">Überblick</a></li>
-                        <li><a href="http://{{ Request::servername('SERVER NAME') }}/inverter/create">Werte abfragen</a></li>
+                        <li><a href="{{ Request::root() }}/inverter">Überblick</a></li>
+                        <li><a href="{{ Request::root() }}/inverter/create">Werte abfragen</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Graphen <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="http://{{ Request::servername('SERVER NAME') }}/graph/power">Leistung</a></li>
-                                <li><a href="http://{{ Request::servername('SERVER NAME') }}/graph/energy">Energie</a></li>
+                                <li><a href="{{ Request::root() }}/graph/power">Leistung</a></li>
+                                <li><a href="{{ Request::root() }}/graph/energy">Energie</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -60,7 +60,7 @@
 @section('content_scripts')
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="http://{{ Request::servername('SERVER NAME') }}/js/bootstrap.min.js"></script>
+        <script src="{{ Request::root() }}/js/bootstrap.min.js"></script>
 @show
     </body>
 </html>
